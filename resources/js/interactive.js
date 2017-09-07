@@ -51,7 +51,7 @@ $(document).ready(function(){
 				$('.contact:hidden:first').fadeIn();
 			}
 			// and wait one second before fading in the next one
-			setTimeout(showContacts, 1000);	
+			setTimeout(showContacts, 300);	
 
 		}
 		
@@ -71,7 +71,7 @@ $(document).ready(function(){
 		$(".skill-title").effect( "shake", {times: 3 }, 1000 );
 	}
 	// execute shaketext function after 5 seconds only once
-	setTimeout(shakeText, 6000);
+	setTimeout(shakeText, 2000);
 	
 	//-------------------------------------
 	
