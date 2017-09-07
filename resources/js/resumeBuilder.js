@@ -43,8 +43,8 @@ biography.display = function() {
 	picture.append(formattedPicture);
 	// check if the picture exist
 	if(picture != null) {
-		// add alt attribute that describes the picture
-		picture.attr("alt", "the owner's picture of this resume");
+		// target the picture and add an alt attribute that describes the picture 
+		picture.find('img').attr("alt", "the owner's picture of this resume");
 	}
 
 	// * CONNTACTS * //
@@ -58,12 +58,12 @@ biography.display = function() {
 	var contact = $(".contact-list");
 	// ..and insert the contact info inside the second column
 	contact.append(formattedHeaderEmail);
+	//$('.contact-list, #footer-contacts').append(formattedHeaderMobile, formattedHeaderEmail);
 	contact.append(formattedHeaderLinkedIn);
 	contact.append(formattedHeaderGitHub);
 	contact.append(formattedHeaderLocation);
 	// insert mobile number at the beggining of targeted element
 	contact.prepend(formattedHeaderMobile);
-
 	// * WELCOMING MESSAGE * //
 	// replace %data% with the welcoming message
 	var formattedHeaderMessage = HTMLHeaderMessage.replace(data, biography.welcomingMessage);
@@ -71,6 +71,8 @@ biography.display = function() {
 	var welcomeMsg = $("header").children().eq(3);
 	 // ..and insert the message inside it
 	 welcomeMsg.append(formattedHeaderMessage);
+	// add a class to the paragraph
+	welcomeMsg.find('p').addClass("welcoming-msg");
 
 	// * SKILLS * //
 	// check if skills exist inside of the biography object
@@ -78,6 +80,8 @@ biography.display = function() {
 		// insert skill title inside 5th child of the header
 		var skillTitle = $("header").children().eq(4);
 		skillTitle.append(HTMLHeaderSkillTitle);
+		// add a class to h3 title
+		skillTitle.children().addClass("skill-title");
 		// target the last row that belongs to the header
 		var skill = $(".skill-list");
 		// loop through each skill
@@ -96,37 +100,17 @@ biography.display = function() {
 	// target unordered list iside of the footer
 	var footerList = $("#footer-contacts");
 	// fill in empty data with contact information
-	var formattedFooterMobile = HTMLFooterMobile.replace(data, biography.contacts.mail);
-	var formattedFooterEmail = HTMLFooterEmail.replace(data, biography.contacts.mobile);
+	var formattedFooterMobile = HTMLFooterMobile.replace(data, biography.contacts.mobile);
+	var formattedFooterEmail = HTMLFooterEmail.replace(data, biography.contacts.mail);
 	// push a list that contains email and mobile number information inside ul element
 	footerList.append(formattedFooterMobile);
 	footerList.append(formattedFooterEmail);
-	// hide all the elements inside the list in the footer but preserve its space
-	footerList.css("visibility", "hidden");
-	// set element click to false
-	var elementClicked = false;
-	$(function(){
-		//footerList.hide();
-		// when you click Lets Connect text
-		letsConnect.click(function(){
-		// and if element click has been false
-		if(elementClicked === false) {
-			//show the list with contact information
-			//footerList.fadeIn(500);
-			footerList.css("visibility", "visible");
-			// set elementClicked to true
-			elementClicked = true;
-		}
-		// when you click Lets Connect text again
-		else{
-			//hide the list with contact information preserving the space
-			//footerList.fadeOut(500);
-			footerList.css("visibility", "hidden");
-			// set elementClicked to false
-			elementClicked = false;
-			}
-		});
-	});
+	// add copyrighs to the footer 
+	$('footer').append(HTMLcopyRight);
+	// add classes
+	$('footer').children().first().addClass("footer-row");
+	$('footer').children().eq(1).addClass("footer-row");
+
 };
 // ***************************************************** //
 // ********************* EDUCATION ********************* //
@@ -184,6 +168,7 @@ education.display = function() {
 			var secondColDate = $(".date:last");
 			// replace %data% with actual information about particular school
 			var formattedSchoolName = HTMLschoolName.replace(data, j.name);
+			
 			var formattedSchoolDegree = HTMLschoolDegree.replace(data, j.degree);
 			var formattedSchoolDates = HTMLschoolDates.replace(data, j.dates);
 			var formattedSchoolLocation = HTMLschoolLocation.replace(data, j.location);
@@ -192,9 +177,13 @@ education.display = function() {
 			// push all the information inside first column (thats why we use :last)
 			firstColInfo.append(formattedSchoolName);
 			firstColInfo.append(formattedSchoolDegree);
+			// add a class to second span insiade first column
+			firstColInfo.children().eq(1).addClass("degree");
 			firstColInfo.append(formattedSchoolLocation);
 			firstColInfo.append(formattedSchoolInfo);
 			firstColInfo.append(formattedSchoolUrl);
+			// add a class to the first span child of the first column 
+			firstColInfo.children().first().addClass("school-title");
 			// push dates to the second column
 			secondColDate.append(formattedSchoolDates);
 		});
@@ -222,6 +211,7 @@ education.display = function() {
 			var formattedOnlineInfo = HTMLonlineInfo.replace(data, k.description);
 			// insert the information to the page
 			firstColOnlineInfo.append(formattedOnlineName);
+			firstColOnlineInfo.children().eq(0).addClass("course-title");
 			firstColOnlineInfo.append(formattedOnlineProgram);
 			firstColOnlineInfo.append(formattedOnlineInfo);
 			// insert dates to the page
@@ -260,6 +250,9 @@ projects.display = function() {
 	$('.section-projects').append(HTMLprojectInit);
 	// append a row that will hold all of the information
 	$('.section-projects').append(HTMLprojectStart);
+	// append an icon --------------------------------------------------------------------------------------TO DO -------------------------------------------------------------------------------
+	$('.section-projects').append('<i class="ion-arrow-right-c"></i>');
+	$('.section-projects').append(HTMLprojectInfo);
 	// check if there are any projects inside projects object
 	if(projects.projects.length > 0){
 		// loop through each project inside projects object
@@ -274,19 +267,35 @@ projects.display = function() {
 			formattedProjectUrl = HTMLprojectUrl.replace(data, l.url);
 			// target the column that has been created for this project
 			var projectColumn = $('.project-col:last');
+
 			// add all of these project information to the page
 			projectColumn.append(formattedProjectTitle);
 			projectColumn.append(formattedProjectDates);
 			projectColumn.append(formattedProjectImage);
+			
 			projectColumn.append(formattedProjectDesc);
 			projectColumn.append(formattedProjectUrl);
+			// wrap the image in an anchor
+			projectColumn.find('img').wrap('<a />');
+			// find the link and att href attribute that points to the right address
+			projectColumn.find('a').attr('href', l.url);
+			// add target _blank to all a so every link will open in a new window 
+			projectColumn.find('a').attr('target', '_blank');
+			// target url link for projects 
+			var link = $('.url:last');
+			// wrap it with a span with a text inside it 
+			link.wrap('<span />').text(l.url);
 
 		});
+		
+		
 	}
+	
 };
 
 // ***************************************************** //
 // ***************** INVOKE FUNCTIONS ****************** //
+
 // display biography to the page
 biography.display();
 // display education to the page
@@ -294,11 +303,3 @@ education.display();
 // display projects to the page
 projects.display();
 
-
-
-// QUESTIONs TO KAROL:
-// 1) HOW CAM I MAKE HIDING BETTER? FOR EXAMPLE SLOW
-// FADEIN AND FADE OUT BUT STILL PRESERVING SPACE ON THE PAGE LAYOUT
-// OR
-// 2) HOW TO EXECUTE CSS ANIMATION AFTER CALLING .CLICK() METHOD TO TRANSITION THE CONTACT LINKS NICELY?
-// 3) whats the difference between the :last and append()?

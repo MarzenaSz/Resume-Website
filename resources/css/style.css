@@ -11,7 +11,7 @@
 	padding: 0;
 	margin: 0;
 
-	border: solid 1px red !important;
+	/*border: solid 1px red !important;*/
 }
 
 html, body {
@@ -21,33 +21,51 @@ html, body {
 	color: #555;
 	background-color: #fff;
 	text-rendering: optimizeLegibility;
+	background: #fff; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#eaeaea, #e3dbcd); 
+    background: -o-linear-gradient(#eaeaea, #e3dbcd); 
+    background: -moz-linear-gradient(#eaeaea, #e3dbcd); 
+    background: linear-gradient(#eaeaea, #e3dbcd); 
 }
 
 img {
     max-width: 100%;
-    height: 300px;
+	width: 100%;
+    height: 270px;
 }
 
 span {
-    display: block;
+	/* show every span on its own line */
+	display: block;
 }
 
-.date {
-    text-align: right;
+ul {
+	/* remove defoult bullets */
+	list-style: none;
 }
 
-.contact {
-    list-style-type: none;
+
+hr {
+	/* make some space between sections */
+	margin: 2% 0;
+	/* give it black bacground */
+	background-color: #000;
+	/* give it thicer and black border so the border will be more visible */
+	border: 1.5px solid  #000;
 }
 
-.footer-mobile, .footer-email {
-    /* let li elements to "sit" next to eachother */
-    display: inline-block;
+hr:first-of-type {
+	/* dont apply margin top for the first hr element */
+	margin-top: 0;
 }
 
-.footer-mobile span, .footer-email span {
-    display: inline-block;
+p, span, h1, h2, h3, h4 {
+	/* set line height to 145% and add some space between the words */
+	line-height: 145%;
+	word-spacing: 1px;
 }
+
+
 /* ************************************************************************************************************************* */
 /* -------------------------------------------------- GRID COMPONENTS ------------------------------------------------------ */
 /* ************************************************************************************************************************* */
@@ -57,6 +75,8 @@ span {
 	width: 100%;
 	/* conter the container */
 	margin: 0 auto;
+	margin-top: 3%;
+	
 }
 
 .row {
@@ -112,6 +132,246 @@ span {
   width: 100%;
 }
 
+
+
+
 /* ************************************************************************************************************************* */
 /* -------------------------------------------------- STYLE ELEMENTS ------------------------------------------------------- */
 /* ************************************************************************************************************************* */
+/* HEADER */
+.name {
+	/* make is invisible */
+	display: none;
+	/* add some space between the name and the role */
+	padding-bottom: 5px;
+	/* increase font size */
+	font-size: 240%;
+	/* make it thiner */
+	font-weight: 300;
+	/* make the text uppercase */
+	text-transform: uppercase;
+	
+}
+
+.role {
+	/* add some space between the role and the picture */
+	padding-bottom: 2%;
+	color: #7b3900;
+	/* make the text bold */
+	font-weight: 400;
+}
+
+.resume-pic {
+	/* make the picture rounded */
+	border-radius: 50%;
+	/* and set its width to 45% */
+	width: 45%;
+	/* apply a shadow to the picture */
+	box-shadow: 5px 5px 2.5px #888888;
+	/* make the picture black and white 
+	 -webkit-filter: grayscale(100%);
+    filter: grayscale(100%); */
+}
+
+.contact-list {
+	/* change default list-style dots to squares */
+	list-style: square;
+}
+
+.contact-list .contact span {
+	/* display span as inline block */
+	display: inline-block;
+	/* make some space between elements */
+	padding: 2% 2%;
+}
+
+.contact {
+	/* hide list elements */
+	display: none;
+}
+
+.skill {
+	/* make the text bold */
+	font-weight: bold;
+	/* decrese font size */
+	font-size: 90%;
+	/* set the color for the skill */
+	color: #7b3900;
+}
+
+.skill-list {
+	/* set list width to 100% */
+	width: 100%;
+}
+
+.skill-list .skill {
+	/* display the element as inline block */
+	display: inline-block;
+	/* add some padding to the left */
+	padding-left: 6.5%;
+	/* add some margin to the top */
+	margin-top: 1%;
+}
+
+.welcoming-msg {
+	/* add some margin to the top and to the bottom */
+	margin: 2% 0;
+}
+
+/* EDUCATION */
+
+h2, h3 {
+	/* add some space to the bottom */
+	margin-bottom: 0.5%;
+}
+
+.info {
+	/* add some margin to the bottom */
+	margin-bottom: 1%;
+	/* add background color */
+	background-color: #cebda5;
+	/* round the corners */
+	border-radius: 20px;
+	/* add some padding so the text will look nicer insiade radius border */
+	padding: 1% 1%;
+	/* change color to black */
+	color: black;
+	opacity: 0;
+}
+
+.section-education h3 {
+	/* add some space on the top */
+	margin-top: 0.5%;
+}
+
+.date {
+	/* decrease date size */
+	font-size: 80%;
+	/* move text to the right */
+	text-align: right;
+	/* make the text italic */
+	font-style: italic;
+	/* make the text thicker */
+	font-weight: bold;
+}
+
+.school-title, .degree, .location-text, .course-title, .program {
+	/* decrease font size */
+	font-size: 90%;
+}
+.school-title, .course-title {
+	/* make the text thicker */
+	font-weight: 400;
+}
+
+/* PROJECTS */
+.project-col {
+	/* add brown background color */
+	background-color: #cebda5;
+	/* round the corners */
+	border-radius: 20px;
+	/* add some padding so the text will look nicer insiade radius border */
+	padding: 1% 1%;
+	margin: 0 0.5%;
+	/* change color to black */
+	color: black;
+	
+}
+
+.project-col:first-of-type {
+	/*padding-right: 1%; */
+	margin-left: 0;
+}
+
+.project-col:last-of-type {
+	/*padding-left: 1%;*/
+	margin-right: 0;
+}
+
+.project-col .date {
+	text-align: left;
+} 
+
+.project-col span a {
+	/* remove underline under the link */
+	text-decoration: none;
+	/* decrease the size */
+	font-size: 75%;
+	/* make the link thicker */
+	font-weight: bold;
+	
+	color: #7b3900;
+}
+
+
+.more-projects {
+	/* decrease the font size */
+	font-size: 90%;
+	/* add some space to the top of the elelemnt */
+	padding-top: 2%;
+	/* make the text bold */
+	font-weight: 400;
+	/* display it as inline-block */
+	display: inline-block;
+	/* add some margin to the left */
+	margin-left: 10px;
+}
+
+i {
+	/* make the icon more visable */
+	font-weight: bold;
+}
+
+.project-pic {
+	/* add some space to the top and the bottom */
+	margin: 20px 0;
+}
+
+.project-col span {
+	/* add some space to the top and the bottom */
+	margin: 10px 0;
+}
+
+/* FOOTER */
+footer a {
+	/* remove underline */
+	text-decoration: none;
+	color: #7b3900;
+}
+
+.footer-row {
+	width: auto;
+	float: left;
+
+}
+
+.footer-row ul li {
+	display: inline-block;
+	margin-right: 30px;
+	margin-top: 9.5px;
+	font-size: 90%;
+	font-weight: 400;
+	color: #7b3900;
+}
+
+.footer-row ul li:first-of-type {
+	margin-left: 20px;
+}
+
+#footer-contacts {
+	visibility: hidden;
+}
+
+.footer-email {
+	/* add some margin to the bottom */
+	margin-bottom: 1%;
+}
+
+.copy-right p {
+	width: 100%;
+	font-size: 70%;
+	color: #1a1a1a;
+	padding: 1% 0;
+	text-align: center;
+	font-weight: 400;
+}
